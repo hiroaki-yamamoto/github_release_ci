@@ -69,12 +69,16 @@ class Release(object):
             tag = self.release_slug.split("tags/")[1]
             upload_url = self.create_release(tag)["upload_url"]
         upload_url = upload_url.replace("{?name,label}", "")
-        resp = http.post(
-            upload_url,
-            params={"name": destination_file_name or path.basename(file_path)},
-            data=open(file_path, 'rb'),
-            auth=(environ["GITHUB_TOKEN"], ''),
-        )
+        resp = None
+        with open(file_path, 'rb') as f:
+            resp = http.post(
+                upload_url,
+                params={
+                    "name": destination_file_name or path.basename(file_path)
+                },
+                data=f,
+                auth=(environ["GITHUB_TOKEN"], ''),
+            )
         resp = resp.raise_for_status()
 
     def download_assets(self, out_dir=getcwd()):
