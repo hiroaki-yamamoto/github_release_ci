@@ -15,6 +15,8 @@ class Release(object):
         self.release_url = (
             'https://api.github.com/repos/{repo_slug}/releases/{release_slug}'
         ).format(repo_slug=repo_slug, release_slug=release_slug)
+        self.repo = repo_slug
+        self.release_slug = release_slug
 
     def get_info(self, disable_cache=False):
         """Get release info."""
