@@ -56,11 +56,6 @@ class Release(object):
         return self.__info
 
     @property
-    def upload_url(self):
-        """Get asset upload url."""
-        return self.get_info()["upload_url"]
-
-    @property
     def asset_info(self):
         """Get asset info."""
         return self.get_info()["assets"]
@@ -69,11 +64,11 @@ class Release(object):
         """Upload assets."""
         upload_url = None
         try:
-            upload_url = self.upload_url
+            upload_url = self.get_info()["upload_url"]
         except http.HTTPError:
             tag = self.release_slug.split("tags/")[1]
             upload_url = self.create_release(tag)["upload_url"]
-        upload_url = upload_url.replace("?{name,label}", "")
+        upload_url = upload_url.replace("{?name,label}", "")
         resp = http.post(
             upload_url,
             params={"name": destination_file_name or path.basename(file_path)},
