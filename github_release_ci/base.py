@@ -23,7 +23,7 @@ class Release(object):
 
         resp = http.get(
             self.release_url,
-            auth=(environ["GITHUB_TOKEN"],),
+            auth=(environ["GITHUB_TOKEN"], ''),
             headers={"Content-Type": "application/json"}
         )
         resp.raise_for_status()
@@ -46,7 +46,8 @@ class Release(object):
         resp = http.post(
             upload_url,
             params={"name": destination_file_name or path.basename(file_path)},
-            files={"file": open(file_path)}
+            files={"file": open(file_path)},
+            auth=(environ["GITHUB_TOKEN"], ''),
         )
         resp = resp.raise_for_status()
 
@@ -55,7 +56,7 @@ class Release(object):
         for asset in self.asset_info:
             resp = http.get(
                 self.asset_info["url"],
-                auth=(environ["GITHUB_TOKEN"],),
+                auth=(environ["GITHUB_TOKEN"], ''),
                 headers={"Content-Type": "application/octed-stream"}
             )
             resp.raise_for_status()
