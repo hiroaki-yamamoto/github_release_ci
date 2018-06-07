@@ -2,11 +2,11 @@ language: python
 cache: pip
 python:
   - "3.6"
-before_deploy:
-  - echo "${TRAVIS_TAG}" > VERSION
-  - setup.py sdist
 script:
   - python -m unittest
+before_deploy:
+  - echo "${TRAVIS_TAG}" > VERSION
+  - python setup.py sdist
 deploy:
   - provider: pypi
     skip_cleanup: true
