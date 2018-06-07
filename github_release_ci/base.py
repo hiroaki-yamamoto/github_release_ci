@@ -72,7 +72,7 @@ class Release(object):
         resp = http.post(
             upload_url,
             params={"name": destination_file_name or path.basename(file_path)},
-            files={"file": open(file_path, 'rb')},
+            data=open(file_path, 'rb'),
             auth=(environ["GITHUB_TOKEN"], ''),
         )
         resp = resp.raise_for_status()
