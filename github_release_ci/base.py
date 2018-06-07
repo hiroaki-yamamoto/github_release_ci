@@ -76,6 +76,9 @@ class Release(object):
                 params={
                     "name": destination_file_name or path.basename(file_path)
                 },
+                headers={
+                    "Content-Type": "application/octed-stream"
+                },
                 data=f,
                 auth=(environ["GITHUB_TOKEN"], ''),
             )
