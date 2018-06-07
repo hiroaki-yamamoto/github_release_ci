@@ -94,6 +94,6 @@ class Release(object):
             out_path = path.join(
                 out_dir, ("{}-{}").format(asset["id"], asset["name"])
             )
-            with open(out_path, 'w') as w:
+            with open(out_path, 'wb') as w:
                 for chunk in resp.iter_content(chunk_size=128):
                     w.write(chunk)
