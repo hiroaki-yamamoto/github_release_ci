@@ -12,11 +12,22 @@ class Release(object):
 
     def __init__(self, repo_slug, release_slug):
         """Init."""
-        self.release_url = (
-            'https://api.github.com/repos/{repo_slug}/releases/{release_slug}'
-        ).format(repo_slug=repo_slug, release_slug=release_slug)
         self.repo = repo_slug
         self.release_slug = release_slug
+
+    @property
+    def release_url(self):
+        """Release URL."""
+        return (
+            'https://api.github.com/repos/{repo_slug}/releases/{release_slug}'
+        ).format(repo_slug=self.repo_slug, release_slug=self.release_slug)
+
+    @property
+    def release_query_url(self):
+        """Release query URL."""
+        return (
+            'https://api.github.com/repos/{repo_slug}/releases'
+        ).format(repo_slug=self.repo_slug)
 
     def get_info(self, disable_cache=False):
         """Get release info."""
@@ -34,8 +45,8 @@ class Release(object):
 
     def create_release(self, tag):
         """Create a release."""
-        resp = http.get(
-            self.release_url,
+        resp = http.post(
+            self.release_query_url,
             auth=(environ["GITHUB_TOKEN"], ''),
             headers={"Content-Type": "application/json"},
             json={'tag_name': tag}
