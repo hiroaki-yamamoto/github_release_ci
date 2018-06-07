@@ -37,6 +37,7 @@ deploy:
     on:
       tags: true
   - provider: releases
+    skip_cleanup: true
     file: dist/github-release-ci-${TRAVIS_TAG}.tar.gz
     api_key:
       secure: >-
