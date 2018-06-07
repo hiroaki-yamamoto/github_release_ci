@@ -19,7 +19,7 @@ version_file = \
 
 if path.exists(version_file):
     with open(version_file) as v:
-        version = version_file.read()
+        version = v.read()
 
 author = "Hiroaki Yamamoto"
 author_email = "hiroaki@hysoftware.net"
