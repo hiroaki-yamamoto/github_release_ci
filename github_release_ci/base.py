@@ -30,6 +30,18 @@ class Release(object):
         self.__info = resp.json()
         return self.__info
 
+    def create_release(self, tag):
+        """Create a release."""
+        resp = http.get(
+            self.release_url,
+            auth=(environ["GITHUB_TOKEN"], ''),
+            headers={"Content-Type": "application/json"},
+            json={'tag_name': tag}
+        )
+        resp.raise_for_status()
+        self.__info = resp.json()
+        return self.__info
+
     @property
     def upload_url(self):
         """Get asset upload url."""
@@ -42,7 +54,13 @@ class Release(object):
 
     def upload_asset(self, file_path, destination_file_name=None):
         """Upload assets."""
-        upload_url = self.upload_url.replace("?{name,label}", "")
+        upload_url = None
+        try:
+            upload_url = self.upload_url
+        except http.HTTPError:
+            tag = self.release_slug.split("tags/")[1]
+            upload_url = self.create_release(tag)["upload_url"]
+        upload_url = upload_url.replace("?{name,label}", "")
         resp = http.post(
             upload_url,
             params={"name": destination_file_name or path.basename(file_path)},
