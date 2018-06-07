@@ -5,7 +5,7 @@
 
 import click as cl
 
-from base import Release
+from .base import Release
 
 
 @cl.command()
