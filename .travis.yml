@@ -1,0 +1,52 @@
+language: python
+python:
+  - "3.6"
+before_deploy:
+  - echo "${TRAVIS_TAG}" > VERSION
+  - setup.py sdist
+deploy:
+  - provider: pypi
+    skip_cleanup: true
+    user:
+      secure: >-
+        OPkQm+JSaUxBecGFSAo5fa5scq3Qy1mSfDAi5hdYzG3boJgG0FS6Jh7WsvRYrBfIHNQqBz
+        uDQ9AiChaZ7CU9Q2DFi3kGOhzoqoKUwRwhP9/a7197lvZuHK8QPEuFpAAshIWShoB65qkU
+        CvIzfxhiLP7cjJEo7dBFfdE8y+LLZYgjsuGG0o1qiF10qnJtpyc5WLVnr0tTeZ8W0jYJew
+        c2BAflBp5GzM63s5IkE57WehmHDeLgYnuck9tASz8XlyBAdr25vzK1mJcj2T6HBxbUoqrn
+        9BsfKR8fbRihMqm1goK9OBh6bFcQs66BJa3TeVzD+DLcp4IEHta7vh0eIxpLkFkPVSoyOd
+        q1WKCjgfB1Ie+SjJsHugUwKqno5umwMQIqKAjNH16mfk6fYdjDme8e8JmCGBbGsXKATwen
+        WtMbNOyI443pwKUCWp3yUcjKtQhnNMyyA3QQWZo1lneMXh284jexj6XGoqgkAcE1EtQxUu
+        hTYmn5C9KzbFj1SISN8crs2+qMu+WMCK7T3HkEKWQlPkktWWnxZQifi5X5OOtb1ghFObjs
+        SbSA/nHTFIgeAfnkvM+3X9EuenMeeITVXVOczLCUdNvZcWhog2ZS5LXyBo9ryJfu6cC5ZB
+        jv4j9oTGYsH+xrXKW+rQE+WDI28d9sbHrX/PiGMYqwDQSfqILO2qw=
+    password:
+      secure: >-
+        guXdBQY6txbaarBt7ufwiRYVKWFqvacr6YUSpJYeUXKxQ4X/KundPl8OrtqwtXfZWYMpc3
+        r+OnxSUYGJYci+WpqBkOk9zVt/c4MZLegeZwQeUM7TOZlU7m4mFy7XDpvsn5btnsSOb/Gg
+        LoPptRx55gqIW32bzGl9RksbDWSmuKpKUGt6BlB7BNZDmjB1DjlfaXqNCa5F4gjQZCqhyp
+        wk3Acy63pZMNrwpKXmWTmdId3aBf+3DPloMmzuqdtUHJNvgCc1MQcLeth5P5Ap4FoJ7iX0
+        zuD8rnibLB/OWImLs5Noblfn950QB/d8qy5KCaB6o+pT40pmOSjAsHU/IfQfp29R0BLXBR
+        2bkaxzzBwP2ZMJqnsUs9jzOgtlZv3dJ1+OlJ507qwUnDnZbpWhpbvaGB3V+yJ48FtL/cqK
+        V3HgLdZkEt/n9gEy7dkqQeWU8Gt+G2r5v4+kW1VQtyp9fI4/LzbBn6uuCyc+gxhEzwfGVs
+        Xgzv/krTp6gWVMzA8nerABC9xdqnPDpQhlQQEe/1q8cczsj1B4AX/TuZhUClkd16ww+eLx
+        mb7JnmFg3t6Pj0qacvuvngF25xPxCa3zcdhRhE6aJ3DPnzV+u6HYudVmbOAt/7SF9e/znI
+        jkM72FF/YFIrDE8WfmhkDGW9qst5H+0ieG/VISK3ImdC0kkIfytas=
+    on:
+      tags: true
+  - provider: releases
+      file: dist/github-release-ci-${TRAVIS_TAG}.tar.gz
+      api_key:
+        secure: >-
+          hSikBlLqXCX2J2LvJKAwiLbJu76kLb/MIs3Uo/9IGSahz2rjfsUmnHLtvXWS5IbD3Ztg
+          kxmbcTksItyMrPvkhMsyCjN7zGadoQEj9Tq3mptN3louq25tYd/ZlwS0mEEf5cOb5l0H
+          hFwyAaJWxLSTCHVZRKoA/QBIbyyxtbgrVdNyvCb5U5gCoV4rHQSKPn/wLE+mZDP7ITXB
+          39iDAza8xTqCW0f03//ZFLt+Dd3o0CFUmeiHJ58ASxe2lRGYUTME2Qsd9jSnT6PbL1IR
+          b7nSTC+55fVr4SVoxzPhjiX6ubYktEhAg/70O0jHTNM41gmxhkUrug2XORgrnUSOv1q6
+          T10sb/VlTcFLP0/N7MOg02XhXmH1uEFethBSDMuvt2GDFomNjHSoLpGGpDQZLusfVWQO
+          nErtKpBBml7zMq2BkQJ/i1iUublZghvgPGJu+Uge0+B3EyVMKzouI3jmQuJ5T8Sc4gQm
+          4pWr8seT3dphrSCfIOvCqHcCYq6zGr4jR3TkPNuukEXlGnuUcgyjvpiRjj65zXtQaw1A
+          6+imD+IMZTEvwzq3OM9SvK76dyYrtGseh/Cs1T5Q0tu4uDCzHBP6SKTNTc1NXH9XG9Du
+          3XG+x4MavYypi9MP7IBV2I3pvI6EZLyuTYHa+uI+hYnYb1ywCbUIog/BtYULXubC27ge
+          tYM=
+      on:
+        tags: true
