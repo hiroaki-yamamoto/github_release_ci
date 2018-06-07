@@ -28,7 +28,7 @@ if sys.version_info < (2, 7):
     raise RuntimeError("Not supported on earlier then python 2.7.")
 
 try:
-    with open('README.rst') as readme:
+    with open('README.md') as readme:
         long_desc = readme.read()
 except Exception:
     long_desc = None
