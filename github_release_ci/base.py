@@ -18,7 +18,7 @@ class Release(object):
 
     def get_info(self, disable_cache=False):
         """Get release info."""
-        if self.__info and not disable_cache:
+        if getattr(self, "__info", None) and not disable_cache:
             return self.__info
 
         resp = http.get(
