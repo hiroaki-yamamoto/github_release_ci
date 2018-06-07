@@ -5,6 +5,8 @@ python:
 before_deploy:
   - echo "${TRAVIS_TAG}" > VERSION
   - setup.py sdist
+script:
+  - python -m unittest
 deploy:
   - provider: pypi
     skip_cleanup: true
