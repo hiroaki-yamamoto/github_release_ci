@@ -1,5 +1,5 @@
 language: python
-cache: pypi
+cache: pip
 python:
   - "3.6"
 before_deploy:
@@ -35,19 +35,19 @@ deploy:
     on:
       tags: true
   - provider: releases
-      file: dist/github-release-ci-${TRAVIS_TAG}.tar.gz
-      api_key:
-        secure: >-
-          hSikBlLqXCX2J2LvJKAwiLbJu76kLb/MIs3Uo/9IGSahz2rjfsUmnHLtvXWS5IbD3Ztg
-          kxmbcTksItyMrPvkhMsyCjN7zGadoQEj9Tq3mptN3louq25tYd/ZlwS0mEEf5cOb5l0H
-          hFwyAaJWxLSTCHVZRKoA/QBIbyyxtbgrVdNyvCb5U5gCoV4rHQSKPn/wLE+mZDP7ITXB
-          39iDAza8xTqCW0f03//ZFLt+Dd3o0CFUmeiHJ58ASxe2lRGYUTME2Qsd9jSnT6PbL1IR
-          b7nSTC+55fVr4SVoxzPhjiX6ubYktEhAg/70O0jHTNM41gmxhkUrug2XORgrnUSOv1q6
-          T10sb/VlTcFLP0/N7MOg02XhXmH1uEFethBSDMuvt2GDFomNjHSoLpGGpDQZLusfVWQO
-          nErtKpBBml7zMq2BkQJ/i1iUublZghvgPGJu+Uge0+B3EyVMKzouI3jmQuJ5T8Sc4gQm
-          4pWr8seT3dphrSCfIOvCqHcCYq6zGr4jR3TkPNuukEXlGnuUcgyjvpiRjj65zXtQaw1A
-          6+imD+IMZTEvwzq3OM9SvK76dyYrtGseh/Cs1T5Q0tu4uDCzHBP6SKTNTc1NXH9XG9Du
-          3XG+x4MavYypi9MP7IBV2I3pvI6EZLyuTYHa+uI+hYnYb1ywCbUIog/BtYULXubC27ge
-          tYM=
-      on:
-        tags: true
+    file: dist/github-release-ci-${TRAVIS_TAG}.tar.gz
+    api_key:
+      secure: >-
+        hSikBlLqXCX2J2LvJKAwiLbJu76kLb/MIs3Uo/9IGSahz2rjfsUmnHLtvXWS5IbD3Ztg
+        kxmbcTksItyMrPvkhMsyCjN7zGadoQEj9Tq3mptN3louq25tYd/ZlwS0mEEf5cOb5l0H
+        hFwyAaJWxLSTCHVZRKoA/QBIbyyxtbgrVdNyvCb5U5gCoV4rHQSKPn/wLE+mZDP7ITXB
+        39iDAza8xTqCW0f03//ZFLt+Dd3o0CFUmeiHJ58ASxe2lRGYUTME2Qsd9jSnT6PbL1IR
+        b7nSTC+55fVr4SVoxzPhjiX6ubYktEhAg/70O0jHTNM41gmxhkUrug2XORgrnUSOv1q6
+        T10sb/VlTcFLP0/N7MOg02XhXmH1uEFethBSDMuvt2GDFomNjHSoLpGGpDQZLusfVWQO
+        nErtKpBBml7zMq2BkQJ/i1iUublZghvgPGJu+Uge0+B3EyVMKzouI3jmQuJ5T8Sc4gQm
+        4pWr8seT3dphrSCfIOvCqHcCYq6zGr4jR3TkPNuukEXlGnuUcgyjvpiRjj65zXtQaw1A
+        6+imD+IMZTEvwzq3OM9SvK76dyYrtGseh/Cs1T5Q0tu4uDCzHBP6SKTNTc1NXH9XG9Du
+        3XG+x4MavYypi9MP7IBV2I3pvI6EZLyuTYHa+uI+hYnYb1ywCbUIog/BtYULXubC27ge
+        tYM=
+    on:
+      tags: true
