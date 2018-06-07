@@ -12,7 +12,7 @@ class Release(object):
 
     def __init__(self, repo_slug, release_slug):
         """Init."""
-        self.repo = repo_slug
+        self.repo_slug = repo_slug
         self.release_slug = release_slug
 
     @property
