@@ -90,7 +90,7 @@ class Release(object):
             resp = http.get(
                 asset["url"],
                 auth=(environ["GITHUB_TOKEN"], ''),
-                headers={"Content-Type": "application/octed-stream"}
+                headers={"Accept": "application/octed-stream"}
             )
             resp.raise_for_status()
             out_path = path.join(
