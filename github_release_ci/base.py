@@ -88,7 +88,7 @@ class Release(object):
         """Download the assets from the release."""
         for asset in self.asset_info:
             resp = http.get(
-                self.asset_info["url"],
+                asset["url"],
                 auth=(environ["GITHUB_TOKEN"], ''),
                 headers={"Content-Type": "application/octed-stream"}
             )
