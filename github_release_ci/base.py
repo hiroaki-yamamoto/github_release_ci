@@ -77,7 +77,7 @@ class Release(object):
                     "name": destination_file_name or path.basename(file_path)
                 },
                 headers={
-                    "Content-Type": "application/octed-stream"
+                    "Content-Type": "application/octet-stream"
                 },
                 data=f,
                 auth=(environ["GITHUB_TOKEN"], ''),
@@ -90,7 +90,7 @@ class Release(object):
             resp = http.get(
                 asset["url"],
                 auth=(environ["GITHUB_TOKEN"], ''),
-                headers={"Accept": "application/octed-stream"}
+                headers={"Accept": "application/octet-stream"}
             )
             resp.raise_for_status()
             out_path = path.join(
