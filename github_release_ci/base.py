@@ -100,4 +100,4 @@ class Release(object):
             with open(out_path, 'wb') as w:
                 for chunk in resp.iter_content(chunk_size=128):
                     w.write(chunk)
-                print(out_path)
+            print(out_path)
