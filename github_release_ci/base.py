@@ -3,7 +3,7 @@
 
 """Base Code."""
 
-from os import environ, path, getcwd
+from os import environ, path, getcwd, makedirs
 import requests as http
 
 
@@ -96,6 +96,8 @@ class Release(object):
             out_path = path.join(
                 out_dir, ("{}-{}").format(asset["id"], asset["name"])
             )
+            makedirs(out_dir, exist_ok=True)
             with open(out_path, 'wb') as w:
                 for chunk in resp.iter_content(chunk_size=128):
                     w.write(chunk)
+                    print(out_path)
